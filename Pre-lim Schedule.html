@@ -60,6 +60,23 @@
             color: black;
         }
 
+        .in-progress {
+            color: green !important;
+            font-weight: bold;
+        }
+
+        .duration {
+            color: darkblue;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .status {
+            color: green;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
         .schedule {
             background-color: white;
             width: 90%;
@@ -116,7 +133,7 @@
 
     <div class="next-test">
 
-        <h2>⏰ Next Exam</h2>
+        <h2 id="next-title">⏰ Next Exam</h2>
 
         <div id="next-exam">
             Loading...
@@ -154,6 +171,7 @@
                     <time datetime="2026-08-18T09:00">
                         18 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-08-20T09:00:00">
@@ -161,6 +179,7 @@
                     <time datetime="2026-08-20T09:00">
                         20 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-08-21T09:00:00">
@@ -168,6 +187,7 @@
                     <time datetime="2026-08-21T09:00">
                         21 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
             </ul>
@@ -190,6 +210,7 @@
                     <time datetime="2026-08-24T09:00">
                         24 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-08-24T14:00:00">
@@ -197,6 +218,7 @@
                     <time datetime="2026-08-24T14:00">
                         24 Aug 2026 at 2pm
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-08-25T14:00:00">
@@ -204,6 +226,7 @@
                     <time datetime="2026-08-25T14:00">
                         25 Aug 2026 at 2pm
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-08-27T09:00:00">
@@ -211,6 +234,7 @@
                     <time datetime="2026-08-27T09:00">
                         27 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-08-28T09:00:00">
@@ -218,6 +242,7 @@
                     <time datetime="2026-08-28T09:00">
                         28 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
             </ul>
@@ -240,6 +265,7 @@
                     <time datetime="2026-08-31T09:00">
                         31 Aug 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-09-01T09:00:00">
@@ -247,6 +273,7 @@
                     <time datetime="2026-09-01T09:00">
                         01 Sep 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-09-02T14:00:00">
@@ -254,6 +281,7 @@
                     <time datetime="2026-09-02T14:00">
                         02 Sep 2026 at 2pm
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-09-03T09:00:00">
@@ -261,6 +289,7 @@
                     <time datetime="2026-09-03T09:00">
                         03 Sep 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-09-04T09:00:00">
@@ -268,6 +297,7 @@
                     <time datetime="2026-09-04T09:00">
                         04 Sep 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
             </ul>
@@ -290,6 +320,7 @@
                     <time datetime="2026-09-07T09:00">
                         07 Sep 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
                 <li data-exam="2026-09-08T09:00:00">
@@ -297,6 +328,7 @@
                     <time datetime="2026-09-08T09:00">
                         08 Sep 2026 at 9am
                     </time>
+                    <span class="duration">• 3 hours</span>
                 </li>
 
             </ul>
@@ -314,82 +346,98 @@
 <script>
 
     // All of the exams
+    // Every exam has a 3-hour writing time
 
     const exams = [
 
         {
             name: "Afrikaans Paper 3",
-            date: "2026-08-18T09:00:00"
+            date: "2026-08-18T09:00:00",
+            duration: 3
         },
 
         {
             name: "English Paper 3",
-            date: "2026-08-20T09:00:00"
+            date: "2026-08-20T09:00:00",
+            duration: 3
         },
 
         {
             name: "Physical Sciences Paper 1",
-            date: "2026-08-21T09:00:00"
+            date: "2026-08-21T09:00:00",
+            duration: 3
         },
 
         {
             name: "Physical Sciences Paper 2",
-            date: "2026-08-24T09:00:00"
+            date: "2026-08-24T09:00:00",
+            duration: 3
         },
 
         {
             name: "History Paper 1",
-            date: "2026-08-24T14:00:00"
+            date: "2026-08-24T14:00:00",
+            duration: 3
         },
 
         {
             name: "English Paper 1",
-            date: "2026-08-25T14:00:00"
+            date: "2026-08-25T14:00:00",
+            duration: 3
         },
 
         {
             name: "Life Orientation",
-            date: "2026-08-27T09:00:00"
+            date: "2026-08-27T09:00:00",
+            duration: 3
         },
 
         {
             name: "Mathematics Paper 1",
-            date: "2026-08-28T09:00:00"
+            date: "2026-08-28T09:00:00",
+            duration: 3
         },
 
         {
             name: "Mathematics Paper 2",
-            date: "2026-08-31T09:00:00"
+            date: "2026-08-31T09:00:00",
+            duration: 3
         },
 
         {
             name: "English Paper 2",
-            date: "2026-09-01T09:00:00"
+            date: "2026-09-01T09:00:00",
+            duration: 3
         },
 
         {
             name: "History Paper 2",
-            date: "2026-09-02T14:00:00"
+            date: "2026-09-02T14:00:00",
+            duration: 3
         },
 
         {
             name: "Afrikaans Paper 1",
-            date: "2026-09-03T09:00:00"
+            date: "2026-09-03T09:00:00",
+            duration: 3
         },
 
         {
             name: "Life Sciences Paper 1",
-            date: "2026-09-04T09:00:00"
+            date: "2026-09-04T09:00:00",
+            duration: 3
         },
 
         {
             name: "Life Sciences Paper 2",
-            date: "2026-09-07T09:00:00"
+            date: "2026-09-07T09:00:00",
+            duration: 3
         },
 
         {
             name: "Afrikaans Paper 2",
-            date: "2026-09-08T09:00:00"
+            date: "2026-09-08T09:00:00",
+            duration: 3
         }
 
     ];
@@ -400,27 +448,147 @@
         const now = new Date().getTime();
 
 
-        // Mark completed exams
+        // Mark exams as completed or in progress
 
         const examList = document.querySelectorAll("li[data-exam]");
 
-        examList.forEach(function(exam) {
+        examList.forEach(function(examElement) {
 
             const examTime = new Date(
-                exam.getAttribute("data-exam")
+                examElement.getAttribute("data-exam")
             ).getTime();
 
-            if (examTime < now) {
+            const examEndTime = examTime + (3 * 60 * 60 * 1000);
 
-                exam.classList.add("completed");
+
+            // Find existing status
+
+            let status = examElement.querySelector(".status");
+
+
+            if (now >= examTime && now < examEndTime) {
+
+                // Exam is currently happening
+
+                examElement.classList.remove("completed");
+
+                if (!status) {
+
+                    status = document.createElement("span");
+                    status.className = "status";
+                    examElement.appendChild(status);
+
+                }
+
+                status.innerHTML = "🟢 IN PROGRESS";
+
+            } else if (now >= examEndTime) {
+
+                // Exam has finished
+
+                examElement.classList.add("completed");
+
+                if (status) {
+                    status.remove();
+                }
 
             } else {
 
-                exam.classList.remove("completed");
+                // Exam has not started yet
+
+                examElement.classList.remove("completed");
+
+                if (status) {
+                    status.remove();
+                }
 
             }
 
         });
+
+
+        // Find an exam currently in progress
+
+        let currentExam = null;
+
+        for (let exam of exams) {
+
+            const examTime = new Date(exam.date).getTime();
+
+            const examEndTime =
+                examTime + (exam.duration * 60 * 60 * 1000);
+
+            if (now >= examTime && now < examEndTime) {
+
+                currentExam = exam;
+
+                break;
+
+            }
+
+        }
+
+
+        // If an exam is currently in progress
+
+        if (currentExam !== null) {
+
+            const examTime =
+                new Date(currentExam.date).getTime();
+
+            const examEndTime =
+                examTime + (currentExam.duration * 60 * 60 * 1000);
+
+            const difference = examEndTime - now;
+
+
+            const hours = Math.floor(
+                difference / (1000 * 60 * 60)
+            );
+
+            const minutes = Math.floor(
+                (difference % (1000 * 60 * 60)) /
+                (1000 * 60)
+            );
+
+            const seconds = Math.floor(
+                (difference % (1000 * 60)) /
+                1000
+            );
+
+
+            document.getElementById("next-title").innerHTML =
+                "🟢 Exam In Progress";
+
+            document.getElementById("next-exam").innerHTML =
+                currentExam.name;
+
+            document.getElementById("next-exam").classList.add(
+                "in-progress"
+            );
+
+            document.getElementById("next-date").innerHTML =
+                "Started at " +
+                new Date(currentExam.date).toLocaleString(
+                    "en-ZA",
+                    {
+                        weekday: "long",
+                        day: "numeric",
+                        month: "long",
+                        hour: "numeric",
+                        minute: "2-digit"
+                    }
+                );
+
+            document.getElementById("countdown").innerHTML =
+                "⏳ " +
+                hours + "h " +
+                minutes + "m " +
+                seconds + "s remaining";
+
+            return;
+
+        }
 
 
         // Find the next exam
@@ -446,8 +614,15 @@
 
         if (nextExam === null) {
 
+            document.getElementById("next-title").innerHTML =
+                "🎉 Exams Finished";
+
             document.getElementById("next-exam").innerHTML =
-                "🎉 All exams are finished!";
+                "All exams are finished!";
+
+            document.getElementById("next-exam").classList.remove(
+                "in-progress"
+            );
 
             document.getElementById("next-date").innerHTML =
                 "";
@@ -460,9 +635,17 @@
         }
 
 
-        // Calculate the time remaining
+        // Remove in-progress styling
 
-        const examTime = new Date(nextExam.date).getTime();
+        document.getElementById("next-exam").classList.remove(
+            "in-progress"
+        );
+
+
+        // Calculate time until next exam
+
+        const examTime =
+            new Date(nextExam.date).getTime();
 
         const difference = examTime - now;
 
@@ -487,7 +670,10 @@
         );
 
 
-        // Display the next exam
+        // Display next exam
+
+        document.getElementById("next-title").innerHTML =
+            "⏰ Next Exam";
 
         document.getElementById("next-exam").innerHTML =
             nextExam.name;
@@ -504,7 +690,8 @@
                     hour: "numeric",
                     minute: "2-digit"
                 }
-            );
+            ) +
+            "<br>⏱️ Writing time: 3 hours";
 
 
         // Display countdown
